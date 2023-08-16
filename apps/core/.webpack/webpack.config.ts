@@ -150,7 +150,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.module.css$/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
@@ -162,6 +162,22 @@ module.exports = {
                             }
                         }
                     },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                config: resolve(currDir, 'postcss.config.cjs')
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                exclude: /\.module.css$/,
+                use: [
+                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
