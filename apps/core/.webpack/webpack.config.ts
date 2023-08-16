@@ -17,6 +17,7 @@ const rootDir = resolve(__dirname, '..');
 const currDir = resolve(__dirname);
 
 /*TODO: husky, commit linters, final checks*/
+/*TODO: dev server: assets hot reload*/
 /*TODO: image minimize, svg test*/
 /*TODO: define stack, schemas, describe tasks*/
 
@@ -138,6 +139,14 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react']
                     }
+                }
+            },
+            {
+                test: /\.m?js/,
+                include: /node_modules/,
+                type: 'javascript/auto',
+                resolve: {
+                    fullySpecified: false
                 }
             },
             {
