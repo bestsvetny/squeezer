@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["./src/**/*", "./src/**/*.json", "../../types/index.d.ts"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "noEmit": false,
+    "outDir": "dist"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    // Type Checking
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "useUnknownInCatchVariables": true,
+
+    // Modules
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    // Emit
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // JavaScript Support
+    "allowJs": false,
+    "checkJs": false,
+
+    // Interop Constraints
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+
+    // Language and Environment
+    "jsx": "react",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+    // Projects
+    // "composite": true,
+    "incremental": true,
+
+    // Completeness
+    "skipLibCheck": true,
+    "paths": {
+      "@ckb/ui/*": ["./packages/ui/src/*"]
+    }
+  },
+  "include": ["./types/index.d.ts"],
+  "exclude": ["node_modules", "lib"],
+  "typeRoots": ["node_modules/@types", "./types"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "NodeNext",
+      "moduleResolution": "Node"
+    }
+  }
+}
