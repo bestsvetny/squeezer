@@ -19,6 +19,7 @@
     "@types/node": "^20.4.10",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.2",
     "@types/webpack": "^5.28.1",
     "babel-loader": "^9.1.3",
     "copy-webpack-plugin": "^11.0.0",
@@ -43,11 +44,17 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.0",
     "@ckb/ui": "*",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@tldraw/tldraw": "canary",
+    "framer-motion": "^10.16.0",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.0"
   },
   "browserslist": "> 0.25%, not dead"
 }
