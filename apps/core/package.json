@@ -48,7 +48,7 @@
     "@ckb/ui": "*",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@tldraw/tldraw": "alpha",
+    "@tldraw/tldraw": "canary",
     "framer-motion": "^10.16.0",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",

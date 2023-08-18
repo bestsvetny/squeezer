@@ -1,4 +1,4 @@
-import { Box2d, resizeBox, ShapeUtil, TLOnResizeHandler } from '@tldraw/tldraw';
+import { Box2d, Rectangle2d, resizeBox, ShapeUtil, TLOnResizeHandler } from '@tldraw/tldraw';
 import React from 'react';
 import { BlockShape } from 'entities/block-shape/types';
 import { BlockShapeComp } from 'entities/block-shape/ui';
@@ -19,6 +19,14 @@ export class BlockShapeUtil extends ShapeUtil<BlockShape> {
             h: 100,
             text: 'card'
         };
+    }
+
+    getGeometry(shape: BlockShape) {
+        return new Rectangle2d({
+            width: shape.props.w,
+            height: shape.props.h,
+            isFilled: true
+        });
     }
 
     getBounds(shape: BlockShape) {
