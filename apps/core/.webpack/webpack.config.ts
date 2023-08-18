@@ -17,6 +17,7 @@ const rootDir = resolve(__dirname, '..');
 const currDir = resolve(__dirname);
 
 /*TODO: husky, commit linters, final checks*/
+/*TODO: dev server: assets hot reload*/
 /*TODO: image minimize, svg test*/
 /*TODO: define stack, schemas, describe tasks*/
 
@@ -141,7 +142,15 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.m?js/,
+                include: /node_modules/,
+                type: 'javascript/auto',
+                resolve: {
+                    fullySpecified: false
+                }
+            },
+            {
+                test: /\.module.css$/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
@@ -153,6 +162,22 @@ module.exports = {
                             }
                         }
                     },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                config: resolve(currDir, 'postcss.config.cjs')
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                exclude: /\.module.css$/,
+                use: [
+                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
