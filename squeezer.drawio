@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-20T15:53:41.234Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="vKFhMnEbniKexxfmlEt7" version="21.6.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-20T15:55:06.010Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="SS-iQfzNJoQubZ19xseW" version="21.6.8" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1930" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -220,7 +220,7 @@
             <mxPoint x="250" y="1260" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QtKT-6Kx8_GbzRboPZ4R-54" value="Server sends Array&amp;lt;message-dto&amp;gt; to clients" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="QtKT-6Kx8_GbzRboPZ4R-54" value="Server sends Array&amp;lt;message-dto&amp;gt; to client" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="453.25" y="1204" width="105.5" height="105.5" as="geometry" />
         </mxCell>
         <mxCell id="QtKT-6Kx8_GbzRboPZ4R-55" value="normilize, save to db" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
