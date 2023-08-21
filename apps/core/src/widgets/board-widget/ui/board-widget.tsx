@@ -2,11 +2,11 @@ import React from 'react';
 import '@tldraw/tldraw/tldraw.css';
 import { Tldraw } from '@tldraw/tldraw';
 import { BlockShapeUtil } from 'entities/block-shape';
-import { uiOverrides } from 'features/board/model/overrides';
-import { CardShapeTool } from 'features/board/model/tool';
 import { BlockTool } from 'features/block-tool';
+import { CardShapeTool } from 'widgets/board-widget/model/tool';
+import { uiOverrides } from 'widgets/board-widget/model';
 
-export const Board = () => {
+export const BoardWidget = () => {
     const CustomShapes = [BlockShapeUtil];
     const customTools = [CardShapeTool];
 

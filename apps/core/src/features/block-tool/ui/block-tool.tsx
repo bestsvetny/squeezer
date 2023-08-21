@@ -2,7 +2,7 @@ import { TLBaseShape, TLShapeId, track, useEditor } from '@tldraw/tldraw';
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState } from 'react';
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { BlockToolContainer } from 'features/block-tool/ui';
+import style from './block-tool.module.css';
 
 export const BlockTool = track(() => {
     const [createText, setCreateText] = useState('');
@@ -42,7 +42,7 @@ export const BlockTool = track(() => {
     };
 
     return (
-        <BlockToolContainer>
+        <div className={style.toolContainer}>
             <FormControl display='flex' flexDirection='column' gap='5px'>
                 <FormLabel>Create block</FormLabel>
                 <label htmlFor='create-text'>Block text</label>
@@ -60,6 +60,6 @@ export const BlockTool = track(() => {
                 <Input type='text' id='edit-text' value={editText} onChange={(e) => setEditText(e.target.value)} />
                 <Button onClick={handleEditClick}>Edit</Button>
             </FormControl>
-        </BlockToolContainer>
+        </div>
     );
 });

@@ -1,2 +1,2 @@
-export * from './board';
+export * from './tool';
 export * from './overrides';
