@@ -31,7 +31,24 @@ export const ChatWidget = () => {
                     zIndex='1000'
                     boxShadow='0 0 3px #818181'
                 >
-                    <Flex flexDirection='column' padding='0 10px 10px 10px' gap='5px'>
+                    <Flex
+                        flexDirection='column'
+                        padding='0 10px 10px 10px'
+                        gap='5px'
+                        overflowY='auto'
+                        css={{
+                            '&::-webkit-scrollbar': {
+                                width: '4px'
+                            },
+                            '&::-webkit-scrollbar-track': {
+                                width: '6px'
+                            },
+                            '&::-webkit-scrollbar-thumb': {
+                                background: '#cdcdcd',
+                                borderRadius: '24px'
+                            }
+                        }}
+                    >
                         {messagesArray.map((msg) => (
                             <ChatMessage key={msg.id} user={msg.user} text={msg.text} ts={msg.ts} />
                         ))}

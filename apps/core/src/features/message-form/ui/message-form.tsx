@@ -28,6 +28,7 @@ export const MessageForm = () => {
                         border='none'
                         fontSize='1em'
                         autoComplete='off'
+                        autoFocus
                     />
                     <InputRightAddon padding='0' borderRadius='0' border='none'>
                         <Button

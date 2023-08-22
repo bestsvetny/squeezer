@@ -27,6 +27,7 @@ export const InputUsername = () => {
                 >
                     <Input
                         placeholder='Input username'
+                        autoComplete='off'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
