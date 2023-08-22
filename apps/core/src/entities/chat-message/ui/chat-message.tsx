@@ -11,7 +11,7 @@ interface ChatMessageProps {
 }
 export const ChatMessage = ({ user, text, ts }: ChatMessageProps) => {
     const date = dayjs(ts).format('hh:mma');
-    const session = useChatStore.use.user();
+    const session = useChatStore.use.session();
     return (
         <div className={`${style.chatMessage} ${session.id === user.id && style.my}`}>
             <Flex flexDirection='column'>

@@ -7,7 +7,7 @@ import { denormalize } from 'shared';
 import { InputUsername } from 'features/input-username';
 export const ChatWidget = () => {
     const messages = useChatStore.use.messages();
-    const isAuth = useChatStore.use.user().isAuth;
+    const isAuth = useChatStore.use.session().isAuth;
     const messagesArray = denormalize(messages);
 
     return (

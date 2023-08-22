@@ -7,6 +7,11 @@ import { devtools } from 'zustand/middleware';
 export type User = {
     id: string | null;
     username: string | null;
+};
+
+type Session = {
+    id: string | null;
+    username: string | null;
     isAuth: boolean;
 };
 
@@ -18,29 +23,64 @@ type Message = {
 };
 
 interface ChatState {
-    user: User;
+    session: Session;
     messages: Entities<Message>;
     sendMessage: (textMessage: string) => void;
     pushNewMessage: (newMessage: Message) => void;
     createUser: (username: string) => void;
 }
 
+const initialState = {
+    session: {
+        id: null,
+        username: null,
+        isAuth: false
+    },
+    messages: {
+        ids: ['1', '2', '3'],
+        entities: {
+            1: {
+                id: '1',
+                ts: new Date().toString(),
+                text: 'lorem ipsum dolor sit amet',
+                user: {
+                    id: '1',
+                    username: 'Alice'
+                }
+            },
+            2: {
+                id: '2',
+                ts: new Date().toString(),
+                text: 'Foo',
+                user: {
+                    id: '2',
+                    username: 'Bob'
+                }
+            },
+            3: {
+                id: '3',
+                ts: new Date().toString(),
+                text: 'Bar',
+                user: {
+                    id: '1',
+                    username: 'Alice'
+                }
+            }
+        }
+    }
+};
+
 const useChatStoreBase = create<ChatState>()(
     devtools(
         immer((set, get) => ({
-            user: {
-                id: null,
-                username: null,
-                isAuth: false
-            },
-            messages: { ids: [], entities: {} },
+            ...initialState,
             sendMessage: (textMessage) => {
                 const newMessage = {
                     //side effects
                     id: uuidv4(),
                     ts: new Date().toString(),
                     text: textMessage,
-                    user: get().user
+                    user: get().session
                 };
                 get().pushNewMessage(newMessage);
             },
@@ -55,7 +95,7 @@ const useChatStoreBase = create<ChatState>()(
             createUser: (username: string) => {
                 const newUser = { id: uuidv4(), username, isAuth: true };
                 set((state) => {
-                    state.user = newUser;
+                    state.session = newUser;
                 });
             }
         }))
