@@ -16,6 +16,7 @@ console.log('dev', isDev);
 const rootDir = resolve(__dirname, '..');
 const currDir = resolve(__dirname);
 
+/*TODO: fix build stats*/
 /*TODO: husky, commit linters, final checks*/
 /*TODO: dev server: assets hot reload*/
 /*TODO: image minimize, svg test*/

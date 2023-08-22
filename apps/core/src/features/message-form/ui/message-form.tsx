@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, FormControl, Input, InputGroup, InputRightAddon } from '@chakra-ui/react';
 import style from './message-form.module.css';
+import { useChatStore } from 'widgets/chat-widget/model';
 
-// TODO: focusBorderColor on input
 export const MessageForm = () => {
+    const [textMessage, setTextMessage] = useState('');
+    const sendMessage = useChatStore.use.sendMessage();
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('hello');
+        if (textMessage !== '') {
+            sendMessage(textMessage);
+            setTextMessage('');
+        }
     };
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <FormControl borderTop='1px solid #ddd'>
                 <InputGroup size='lg'>
                     <Input
+                        value={textMessage}
+                        onChange={(e) => setTextMessage(e.target.value)}
                         className={style.messageInput}
                         type='text'
                         placeholder='Write a message...'

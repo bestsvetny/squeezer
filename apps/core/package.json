@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
     "build": "cross-env NODE_ENV=production webpack --config .webpack/webpack.config.ts --mode production",
-    "build-stats": ".webpack --json > stats.json && webpack-bundle-analyzer stats.json"
+    "build-stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json"
   },
   "author": "Arthur <bestsvetny@gmail.com>",
   "license": "ISC",
@@ -51,6 +51,7 @@
     "@emotion/styled": "^11.11.0",
     "@tldraw/tldraw": "canary",
     "framer-motion": "^10.16.0",
+    "immer": "^10.0.2",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
