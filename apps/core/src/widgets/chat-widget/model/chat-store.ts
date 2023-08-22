@@ -7,6 +7,7 @@ import { devtools } from 'zustand/middleware';
 export type User = {
     id: string | null;
     username: string | null;
+    isAuth: boolean;
 };
 
 type Message = {
@@ -21,14 +22,16 @@ interface ChatState {
     messages: Entities<Message>;
     sendMessage: (textMessage: string) => void;
     pushNewMessage: (newMessage: Message) => void;
+    createUser: (username: string) => void;
 }
 
 const useChatStoreBase = create<ChatState>()(
     devtools(
         immer((set, get) => ({
             user: {
-                id: uuidv4(),
-                username: 'bestsvetny'
+                id: null,
+                username: null,
+                isAuth: false
             },
             messages: { ids: [], entities: {} },
             sendMessage: (textMessage) => {
@@ -48,8 +51,13 @@ const useChatStoreBase = create<ChatState>()(
                 set((state) => {
                     state.messages.entities[newMessage.id] = newMessage;
                 });
+            },
+            createUser: (username: string) => {
+                const newUser = { id: uuidv4(), username, isAuth: true };
+                set((state) => {
+                    state.user = newUser;
+                });
             }
-            // createUser: (newUser: User) => set((state) => (state.user = newUser))
         }))
     )
 );

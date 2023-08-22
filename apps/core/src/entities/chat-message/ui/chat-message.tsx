@@ -19,7 +19,7 @@ export const ChatMessage = ({ user, text, ts }: ChatMessageProps) => {
                 <div>
                     <p className={style.text}>
                         {text}
-                        <div className={style.tsHidden}>{date}</div>
+                        <span className={style.tsHidden}>{date}</span>
                     </p>
                 </div>
             </Flex>
