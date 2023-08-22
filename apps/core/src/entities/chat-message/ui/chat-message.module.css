@@ -1,0 +1,43 @@
+.chat-message {
+    display: flex;
+    position: relative;
+    padding: 10px;
+    max-width: 21rem;
+    border-radius: 10px;
+    background: #fff;
+    align-self: start;
+    font-size: 0.95rem;
+}
+
+.my {
+    align-self: end;
+    background: #d7e7ff;
+}
+
+.username {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.text {
+    font-size: 1em;
+    word-break: break-word;
+}
+
+.ts {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    float: right;
+    font-size: 0.9em;
+    line-height: 0.9em;
+    color: #b3b8bd;
+}
+
+.ts-hidden {
+    visibility: hidden;
+    float: right;
+    margin-left: 15px;
+    font-size: 0.9em;
+    line-height: 0.9em;
+}

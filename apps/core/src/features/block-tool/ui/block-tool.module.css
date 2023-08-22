@@ -1,0 +1,13 @@
+.tool-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: absolute;
+    bottom: 20vh;
+    left: 1vw;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 5px #818181;
+    background: #fff;
+}

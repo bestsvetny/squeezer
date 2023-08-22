@@ -49,5 +49,9 @@
       "git add"
     ]
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.1",
+  "dependencies": {
+    "dayjs": "^1.11.9",
+    "zustand": "^4.4.1"
+  }
 }
