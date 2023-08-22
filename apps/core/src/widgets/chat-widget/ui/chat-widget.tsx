@@ -7,8 +7,49 @@ import { denormalize } from 'shared';
 import { InputUsername } from 'features/input-username';
 export const ChatWidget = () => {
     const messages = useChatStore.use.messages();
-    const isAuth = useChatStore.use.session().isAuth;
+    const isAuth = useChatStore.use.userSession().isAuth;
+    const isConnected = useChatStore.use.isConnected();
+    const createUser = useChatStore.use.createUser();
+    const setSocket = useChatStore.use.setSocket();
+    const pushNewMessage = useChatStore.use.pushNewMessage();
+    const setIsConnected = useChatStore.use.setIsConnected();
+
     const messagesArray = denormalize(messages);
+
+    const handleCreateConnection = (username: string) => {
+        createUser(username);
+        connect();
+    };
+    const connect = () => {
+        const socket = new WebSocket('ws://localhost:5000');
+        setSocket(socket);
+
+        socket.onopen = () => {
+            setIsConnected(true);
+            console.log('Socket opened');
+        };
+        socket.onmessage = (event) => {
+            const parsedMessage = JSON.parse(event.data);
+            console.log('parsed', parsedMessage);
+            switch (parsedMessage.event) {
+                case 'message':
+                    pushNewMessage({
+                        id: parsedMessage.id,
+                        ts: parsedMessage.ts,
+                        text: parsedMessage.text,
+                        user: parsedMessage.user
+                    });
+                    break;
+            }
+        };
+        socket.onclose = () => {
+            setIsConnected(false);
+            console.log('Socket closed');
+        };
+        socket.onerror = () => {
+            console.log('Socket error');
+        };
+    };
 
     return (
         <Box
@@ -19,9 +60,8 @@ export const ChatWidget = () => {
             alignItems='center'
             background='#f3f3f3'
         >
-            {!isAuth ? (
-                <InputUsername />
-            ) : (
+            {!isAuth && <InputUsername onSubmit={handleCreateConnection} />}
+            {isAuth && isConnected && (
                 <Box
                     height='100%'
                     width='100%'

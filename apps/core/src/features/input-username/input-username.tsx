@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, Input } from '@chakra-ui/react';
-import { useChatStore } from 'widgets/chat-widget/model';
 
-export const InputUsername = () => {
+interface InputUsernameProps {
+    onSubmit: (username: string) => void;
+}
+
+export const InputUsername = ({ onSubmit }: InputUsernameProps) => {
     const [username, setUsername] = useState('');
-    const createUser = useChatStore.use.createUser();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (username !== '') {
-            createUser(username);
+            onSubmit(username);
             setUsername('');
         }
     };
