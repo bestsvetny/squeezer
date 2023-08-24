@@ -1,6 +1,6 @@
 import { TLBaseShape, TLShapeId, track, useEditor } from '@tldraw/tldraw';
 import { v4 as uuidv4 } from 'uuid';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import style from './block-tool.module.css';
 
@@ -22,6 +22,17 @@ export const BlockTool = track(() => {
             }
         ]);
     };
+
+    useEffect(() => {
+        editor.on('event', (event) => {
+            if (event.name === 'pointer_move') {
+                return;
+            } else {
+                console.log(event);
+                console.log(editor.store.allRecords());
+            }
+        });
+    });
 
     const handleEditClick = () => {
         if (editor.selectedShapes.length > 0) {

@@ -9,7 +9,7 @@ export type User = {
     username: string | null;
 };
 
-type Session = {
+type UserSession = {
     id: string | null;
     username: string | null;
     isAuth: boolean;
@@ -23,50 +23,28 @@ type Message = {
 };
 
 interface ChatState {
-    session: Session;
+    userSession: UserSession;
     messages: Entities<Message>;
+    isConnected: boolean;
+    socket: WebSocket | null;
     sendMessage: (textMessage: string) => void;
     pushNewMessage: (newMessage: Message) => void;
     createUser: (username: string) => void;
+    setSocket: (socket: WebSocket) => void;
+    setIsConnected: (isConnected: boolean) => void;
 }
 
 const initialState = {
-    session: {
+    socket: null,
+    isConnected: false,
+    userSession: {
         id: null,
         username: null,
         isAuth: false
     },
     messages: {
-        ids: ['1', '2', '3'],
-        entities: {
-            1: {
-                id: '1',
-                ts: new Date().toString(),
-                text: 'lorem ipsum dolor sit amet',
-                user: {
-                    id: '1',
-                    username: 'Alice'
-                }
-            },
-            2: {
-                id: '2',
-                ts: new Date().toString(),
-                text: 'Foo',
-                user: {
-                    id: '2',
-                    username: 'Bob'
-                }
-            },
-            3: {
-                id: '3',
-                ts: new Date().toString(),
-                text: 'Bar',
-                user: {
-                    id: '1',
-                    username: 'Alice'
-                }
-            }
-        }
+        ids: [],
+        entities: {}
     }
 };
 
@@ -75,14 +53,18 @@ const useChatStoreBase = create<ChatState>()(
         immer((set, get) => ({
             ...initialState,
             sendMessage: (textMessage) => {
+                //side effects
                 const newMessage = {
-                    //side effects
                     id: uuidv4(),
                     ts: new Date().toString(),
                     text: textMessage,
-                    user: get().session
+                    user: get().userSession
                 };
-                get().pushNewMessage(newMessage);
+                const socket = get().socket;
+                if (socket) {
+                    console.log('send');
+                    socket.send(JSON.stringify({ event: 'message', ...newMessage }));
+                }
             },
             pushNewMessage: (newMessage) => {
                 set((state) => {
@@ -95,7 +77,18 @@ const useChatStoreBase = create<ChatState>()(
             createUser: (username: string) => {
                 const newUser = { id: uuidv4(), username, isAuth: true };
                 set((state) => {
-                    state.session = newUser;
+                    state.userSession = newUser;
+                });
+            },
+            setSocket: (socket: WebSocket) => {
+                console.log('set socket');
+                set((state) => {
+                    state.socket = socket;
+                });
+            },
+            setIsConnected: (isConnected) => {
+                set((state) => {
+                    state.isConnected = isConnected;
                 });
             }
         }))

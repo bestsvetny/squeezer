@@ -5,6 +5,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 import webpack from 'webpack';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
@@ -21,6 +22,7 @@ const currDir = resolve(__dirname);
 /*TODO: dev server: assets hot reload*/
 /*TODO: image minimize, svg test*/
 /*TODO: define stack, schemas, describe tasks*/
+/*TODO: dotenv*/
 
 /*TODO: Specs, Storybook, Nx automation*/
 
@@ -76,7 +78,8 @@ const plugins = (isProd: boolean) => {
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
-        })
+        }),
+        new Dotenv()
     ];
 
     if (isProd) {
