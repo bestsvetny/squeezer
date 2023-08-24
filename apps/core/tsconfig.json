@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "include": ["src/**/*.ts", "src/**/*.tsx", "../../types/index.d.ts"],
   "compilerOptions": {
+    "target": "ESNext",
     "baseUrl": "./src",
     "noEmit": true,
     "typeRoots": ["node_modules/@types", "../../node_modules", "../../node_modules/@types"]

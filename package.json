@@ -18,7 +18,8 @@
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
     "typecheck": "tsc -b tsconfig.json --diagnostics",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "yjs": "cross-env PORT=1234 node ./node_modules/y-websocket/bin/server.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.3.0",
