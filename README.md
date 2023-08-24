@@ -8,6 +8,7 @@ yarn
 Development
 ```bash
 yarn dev
+yarn yjs
 yarn dev:api
 ```
 
