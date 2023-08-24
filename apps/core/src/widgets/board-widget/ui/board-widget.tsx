@@ -7,7 +7,7 @@ import { CardShapeTool } from 'widgets/board-widget/model/tool';
 import { uiOverrides } from 'widgets/board-widget/model';
 import { useYjsStore } from 'widgets/board-widget/model/useYjsStore';
 
-const HOST_URL = 'ws://localhost:1234';
+const HOST_URL = process.env.BOARD_HOST_URL;
 
 export const BoardWidget = () => {
     const CustomShapes = [BlockShapeUtil];

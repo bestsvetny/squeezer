@@ -42,9 +42,9 @@
     "skipLibCheck": true,
     "paths": {
       "@ckb/ui/*": ["./packages/ui/src/*"]
-    }
+    },
   },
-  "include": ["./types/index.d.ts"],
+  "include": ["./types/*.d.ts"],
   "exclude": ["node_modules", "lib"],
   "typeRoots": ["node_modules/@types", "./types"],
   "ts-node": {

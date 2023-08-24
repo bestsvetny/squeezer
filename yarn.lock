@@ -2661,6 +2661,7 @@ __metadata:
     "@emotion/react": ^11.11.1
     "@emotion/styled": ^11.11.0
     "@tldraw/tldraw": canary
+    "@types/dotenv-webpack": ^7.0.4
     "@types/lodash": ^4.14.197
     "@types/node": ^20.4.10
     "@types/react": ^18.2.20
@@ -2673,6 +2674,7 @@ __metadata:
     css-loader: ^6.8.1
     css-minimizer-webpack-plugin: ^5.0.1
     csv-loader: ^3.0.5
+    dotenv-webpack: ^8.0.1
     framer-motion: ^10.16.0
     html-webpack-plugin: ^5.5.3
     immer: ^10.0.2
@@ -5482,6 +5484,17 @@ __metadata:
   version: 2.5.5
   resolution: "@types/core-js@npm:2.5.5"
   checksum: 54eb91dc52206d8e524771cd079be4bed6a41947d08183a7954df7a3dc25ae21c8b7176143dc7203df82a6e5ff1df8998edc8d407c4a082bdbf0ede35369c5c3
+  languageName: node
+  linkType: hard
+
+"@types/dotenv-webpack@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "@types/dotenv-webpack@npm:7.0.4"
+  dependencies:
+    "@types/node": "*"
+    tapable: ^2.2.0
+    webpack: ^5
+  checksum: 596090034f777c01a475440ff8dc4a9b5a8dd158c0ea19b3547f5ac62dae9f135041e0c66f7267c259bf285ab7e8a1a3770fe75bf2128d97326dc47e71a20c0a
   languageName: node
   linkType: hard
 
@@ -8563,6 +8576,33 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: d5775790093c234ef4bfd5fbe40884ff7e6c87573e5339432870616331189f7f5d86575c5b5af2dcf0f61172990f4f734d07844b1f23482fff09e3c4bead05ea
+  languageName: node
+  linkType: hard
+
+"dotenv-defaults@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "dotenv-defaults@npm:2.0.2"
+  dependencies:
+    dotenv: ^8.2.0
+  checksum: c005960bd048e2189c4799e729c41f362e415e6e0b54313d3f31e853a84b049bf770b25cb21c112c2805bb13a8376edc9de451fb514abf8546392d327c27f6e5
+  languageName: node
+  linkType: hard
+
+"dotenv-webpack@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "dotenv-webpack@npm:8.0.1"
+  dependencies:
+    dotenv-defaults: ^2.0.2
+  peerDependencies:
+    webpack: ^4 || ^5
+  checksum: ee73eda78df90bcf7446763dfe5e518a2054ed6222783856912d2c6a255fdfc041854e125e036ff2603b06fb44f5234713fad5feecb1e66a54fe78a35a98fb87
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^8.2.0":
+  version: 8.6.0
+  resolution: "dotenv@npm:8.6.0"
+  checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
   languageName: node
   linkType: hard
 
