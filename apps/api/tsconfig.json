@@ -1,25 +1,21 @@
 {
-  "include": ["./src/**/*", "./src/**/*.json", "../../types/index.d.ts"],
-  "exclude": ["node_modules"],
   "compilerOptions": {
-    "moduleResolution": "node",
-    "target": "ESNext",
-    "lib":[ "ESNext"],
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "baseUrl": "./src",
-    "noEmit": false,
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
     "skipLibCheck": true,
-    "sourceMap": true
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
   },
-  "lib": ["esnext"],
-  "ts-node": {
-    "esm": true
-  }
 }

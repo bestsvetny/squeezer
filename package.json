@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "yarn dev:core",
     "dev:core": "yarn nx dev @ckb/core",
-    "dev:api": "yarn nx dev @ckb/api",
+    "dev:api": "yarn nx dev @ckb/chat-host",
     "build": "yarn nx run-many -t build",
     "build:core": "yarn nx build @ckb/core",
     "lint:eslint": "eslint . --ext .js,cjs,.ts,.tsx --cache",
