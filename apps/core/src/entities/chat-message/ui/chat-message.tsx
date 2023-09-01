@@ -2,7 +2,8 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import style from './chat-message.module.css';
 import dayjs from 'dayjs';
-import { useChatStore, User } from 'widgets/chat-widget/model';
+import { useAppStore } from 'app/app-store';
+import { User } from 'widgets/chat-widget';
 
 interface ChatMessageProps {
     user: User;
@@ -11,11 +12,11 @@ interface ChatMessageProps {
 }
 export const ChatMessage = ({ user, text, ts }: ChatMessageProps) => {
     const date = dayjs(ts).format('hh:mma');
-    const session = useChatStore.use.userSession();
+    const sessionId = useAppStore.use.userSession().userId;
     return (
-        <div className={`${style.chatMessage} ${session.id === user.id && style.my}`}>
+        <div className={`${style.chatMessage} ${sessionId === user.id && style.my}`}>
             <Flex flexDirection='column'>
-                {session.id !== user.id && <span className={style.username}>{user.username}</span>}
+                {sessionId !== user.id && <span className={style.username}>{user.username}</span>}
                 <div>
                     <p className={style.text}>
                         {text}

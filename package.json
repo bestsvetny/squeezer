@@ -9,6 +9,7 @@
     "dev": "yarn dev:core",
     "dev:core": "yarn nx dev @ckb/core",
     "dev:api": "yarn nx dev @ckb/api",
+    "dev:chat-host": "yarn nx dev @ckb/chat-host",
     "build": "yarn nx run-many -t build",
     "build:core": "yarn nx build @ckb/core",
     "lint:eslint": "eslint . --ext .js,cjs,.ts,.tsx --cache",
@@ -22,6 +23,7 @@
     "yjs": "cross-env PORT=1234 node ./node_modules/y-websocket/bin/server.js"
   },
   "devDependencies": {
+    "@types/passport-local": "^1.0.35",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.47.0",
@@ -53,7 +55,11 @@
   },
   "packageManager": "yarn@3.6.1",
   "dependencies": {
+    "@nestjs/passport": "^10.0.1",
+    "axios": "^1.5.0",
     "dayjs": "^1.11.9",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "zustand": "^4.4.1"
   }
 }

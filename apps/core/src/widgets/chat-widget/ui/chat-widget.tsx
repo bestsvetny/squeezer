@@ -1,27 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MessageForm } from 'features/message-form';
 import { Box, Flex } from '@chakra-ui/react';
 import { ChatMessage } from 'entities/chat-message';
-import { useChatStore } from 'widgets/chat-widget/model/chat-store';
 import { denormalize } from 'shared';
-import { InputUsername } from 'features/input-username';
+import { CHAT_HOST_URL } from 'shared/constants';
+import { useAppStore } from 'app/app-store';
 export const ChatWidget = () => {
-    const messages = useChatStore.use.messages();
-    const isAuth = useChatStore.use.userSession().isAuth;
-    const isConnected = useChatStore.use.isConnected();
-    const createUser = useChatStore.use.createUser();
-    const setSocket = useChatStore.use.setSocket();
-    const pushNewMessage = useChatStore.use.pushNewMessage();
-    const setIsConnected = useChatStore.use.setIsConnected();
+    const messages = useAppStore.use.messages();
+    const isConnected = useAppStore.use.isConnected();
+    const setSocket = useAppStore.use.setSocket();
+    const pushNewMessage = useAppStore.use.pushNewMessage();
+    const setIsConnected = useAppStore.use.setIsConnected();
 
     const messagesArray = denormalize(messages);
 
-    const handleCreateConnection = (username: string) => {
-        createUser(username);
+    useEffect(() => {
+        handleCreateConnection();
+    }, []);
+
+    const handleCreateConnection = () => {
         connect();
     };
     const connect = () => {
-        const socket = new WebSocket('ws://localhost:5000');
+        const socket = new WebSocket(CHAT_HOST_URL);
         setSocket(socket);
 
         socket.onopen = () => {
@@ -60,8 +61,7 @@ export const ChatWidget = () => {
             alignItems='center'
             background='#f3f3f3'
         >
-            {!isAuth && <InputUsername onSubmit={handleCreateConnection} />}
-            {isAuth && isConnected && (
+            {isConnected && (
                 <Box
                     height='100%'
                     width='100%'
@@ -96,6 +96,7 @@ export const ChatWidget = () => {
                     <MessageForm />
                 </Box>
             )}
+            {!isConnected && <div>Connecting...</div>}
         </Box>
     );
 };

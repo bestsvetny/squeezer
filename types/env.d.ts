@@ -1,7 +1,5 @@
-declare global {
-    namespace NodeJS {
-        interface ProcessEnv {
-            BOARD_HOST_URL: string;
-        }
+declare namespace NodeJS {
+    interface ProcessEnv {
+        [key: string]: string | undefined;
     }
 }
