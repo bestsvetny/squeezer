@@ -1,11 +1,11 @@
 import { StateCreator } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
 import { Entities } from 'shared';
-import { SessionSlice } from 'entities/session';
+import { SessionSlice, UserSession } from 'entities/session';
 
 export type User = {
-    id: string | null;
-    username: string | null;
+    id: number;
+    username: string;
 };
 
 type Message = {
@@ -36,14 +36,13 @@ const initialState = {
 
 export const createChatSlice: StateCreator<
     SessionSlice & ChatSlice,
-    [['zustand/devtools', never], ['zustand/immer', never]],
+    [['zustand/devtools', never], ['zustand/persist', UserSession], ['zustand/immer', never]],
     [],
     ChatSlice
 > = (set, get) => ({
     ...initialState,
     sendMessage: (textMessage) => {
         const user = get().userSession;
-        //side effects
         const newMessage = {
             id: uuidv4(),
             ts: new Date().toString(),

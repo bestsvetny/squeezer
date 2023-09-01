@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button, FormControl, Input, InputGroup, InputRightAddon } from '@chakra-ui/react';
 import style from './message-form.module.css';
-import { useChatStore } from 'widgets/chat-widget/model';
+import { useAppStore } from 'app/app-store';
 
 export const MessageForm = () => {
     const [textMessage, setTextMessage] = useState('');
-    const sendMessage = useChatStore.use.sendMessage();
+    const sendMessage = useAppStore.use.sendMessage();
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (textMessage !== '') {
