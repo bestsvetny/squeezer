@@ -5,6 +5,8 @@ import { ChatMessage } from 'entities/chat-message';
 import { denormalize } from 'shared';
 import { CHAT_HOST_URL } from 'shared/constants';
 import { useAppStore } from 'app/app-store';
+import { io } from 'socket.io-client';
+import { Message } from 'postcss';
 export const ChatWidget = () => {
     const messages = useAppStore.use.messages();
     const isConnected = useAppStore.use.isConnected();
@@ -15,42 +17,37 @@ export const ChatWidget = () => {
     const messagesArray = denormalize(messages);
 
     useEffect(() => {
-        handleCreateConnection();
-    }, []);
-
-    const handleCreateConnection = () => {
-        connect();
-    };
-    const connect = () => {
-        const socket = new WebSocket(CHAT_HOST_URL);
-        setSocket(socket);
-
-        socket.onopen = () => {
+        function onConnect() {
             setIsConnected(true);
             console.log('Socket opened');
-        };
-        socket.onmessage = (event) => {
-            const parsedMessage = JSON.parse(event.data);
-            console.log('parsed', parsedMessage);
-            switch (parsedMessage.event) {
-                case 'message':
-                    pushNewMessage({
-                        id: parsedMessage.id,
-                        ts: parsedMessage.ts,
-                        text: parsedMessage.text,
-                        user: parsedMessage.user
-                    });
-                    break;
-            }
-        };
-        socket.onclose = () => {
+        }
+
+        function onDisconnect() {
             setIsConnected(false);
             console.log('Socket closed');
+        }
+
+        function onChatEvent(message: Message) {
+            pushNewMessage({
+                id: message.id,
+                ts: message.ts,
+                text: message.text,
+                user: message.user
+            });
+        }
+
+        const socket = io(CHAT_HOST_URL);
+        setSocket(socket);
+        socket.on('connect', onConnect);
+        socket.on('disconnect', onDisconnect);
+        socket.on('chat', onChatEvent);
+
+        return () => {
+            socket.off('connect', onConnect);
+            socket.off('disconnect', onDisconnect);
+            socket.off('chat', onChatEvent);
         };
-        socket.onerror = () => {
-            console.log('Socket error');
-        };
-    };
+    }, [pushNewMessage, setIsConnected, setSocket]);
 
     return (
         <Box

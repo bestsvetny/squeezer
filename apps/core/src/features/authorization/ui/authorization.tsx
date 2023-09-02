@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react';
 import { RegisterForm } from 'features/authorization/ui/register-form';
 
 export const Authorization = () => {
-    const [view, setView] = useState<'register' | 'login'>('register');
+    const [view, setView] = useState<'register' | 'login'>('login');
     return (
         <Flex flexDirection='column' justifyContent='center' alignItems='center' height='100vh'>
             {view === 'login' && <LoginForm onChangeView={() => setView('register')} />}
