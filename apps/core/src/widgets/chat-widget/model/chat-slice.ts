@@ -1,27 +1,28 @@
 import { StateCreator } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
 import { Entities } from 'shared';
-import { SessionSlice, UserSession } from 'entities/session';
+import { SessionSlice } from 'entities/session';
+import { Socket } from 'socket.io-client';
 
-export type User = {
+export type MessageUser = {
     id: number;
     username: string;
 };
 
-type Message = {
+export type EventMessage = {
     id: string;
     ts: string;
     text: string;
-    user: User;
+    user: MessageUser;
 };
 
 export interface ChatSlice {
-    messages: Entities<Message>;
+    messages: Entities<EventMessage>;
     isConnected: boolean;
-    socket: WebSocket | null;
+    socket: Socket | null;
     sendMessage: (textMessage: string) => void;
-    pushNewMessage: (newMessage: Message) => void;
-    setSocket: (socket: WebSocket) => void;
+    pushNewMessage: (newMessage: EventMessage) => void;
+    setSocket: (socket: Socket) => void;
     setIsConnected: (isConnected: boolean) => void;
 }
 
@@ -36,7 +37,7 @@ const initialState = {
 
 export const createChatSlice: StateCreator<
     SessionSlice & ChatSlice,
-    [['zustand/devtools', never], ['zustand/persist', UserSession], ['zustand/immer', never]],
+    [['zustand/devtools', never], ['zustand/persist', unknown], ['zustand/immer', never]],
     [],
     ChatSlice
 > = (set, get) => ({
@@ -52,7 +53,7 @@ export const createChatSlice: StateCreator<
         const socket = get().socket;
         if (socket) {
             console.log('send');
-            socket.send(JSON.stringify({ event: 'message', ...newMessage }));
+            socket.emit('chat', newMessage);
         }
     },
     pushNewMessage: (newMessage) => {
@@ -63,9 +64,11 @@ export const createChatSlice: StateCreator<
             state.messages.entities[newMessage.id] = newMessage;
         });
     },
-    setSocket: (socket: WebSocket) => {
+    setSocket: (socket: Socket) => {
         console.log('set socket');
         set((state) => {
+            // type conflict
+            // @ts-ignore
             state.socket = socket;
         });
     },

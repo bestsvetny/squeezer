@@ -61,7 +61,7 @@ export const LoginForm = ({ onChangeView }: LoginFormProps) => {
                     Sign in
                 </Button>
                 <Button size='sm' variant='link' onClick={onChangeView}>
-                    Sign up
+                    Crreate an account
                 </Button>
             </Flex>
         </form>

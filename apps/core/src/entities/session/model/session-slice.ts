@@ -16,7 +16,7 @@ const initialState = {
 
 export const createSessionSlice: StateCreator<
     SessionSlice & ChatSlice,
-    [['zustand/devtools', never], ['zustand/persist', UserSession], ['zustand/immer', never]],
+    [['zustand/devtools', never], ['zustand/persist', unknown], ['zustand/immer', never]],
     [],
     SessionSlice
 > = (set) => ({
