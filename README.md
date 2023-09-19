@@ -1,8 +1,7 @@
 <div align="center">
 
-<h1 style="border-bottom: none">
-    <b>Squeezer</b><br />
-    Jam, brainstorm, documentation
+<h1>
+    <b>Squeezer</b>
 </h1>
 
 <p>
