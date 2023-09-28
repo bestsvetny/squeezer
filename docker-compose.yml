@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: yarn prod:api #env vars here
+    command: yarn prod:api
     restart: unless-stopped
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
