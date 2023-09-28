@@ -6,7 +6,7 @@ map $http_upgrade $connection_upgrade {
 server {
     listen 80;
 
-    server_name bestsvetny.com;
+    server_name bestsvetny.xyz www.bestsvetny.xyz;
 
     location / {
         proxy_pass http://core:4001;

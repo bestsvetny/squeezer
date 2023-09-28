@@ -80,7 +80,7 @@ const plugins = (isProd: boolean) => {
             filename: '[name].[contenthash].css'
         }),
         new Dotenv({
-            path: isDev ? resolve(rootDir, '.development.env') : resolve(rootDir, '.production.env')
+            path: isDev ? resolve(rootDir, '.development.env') : resolve(rootDir, '../../.env')
         })
     ];
 
