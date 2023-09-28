@@ -5,26 +5,22 @@ import { BlockShapeUtil } from 'entities/block-shape';
 import { BlockTool } from 'features/block-tool';
 import { CardShapeTool } from 'widgets/board-widget/model/tool';
 import { uiOverrides } from 'widgets/board-widget/model';
-import { useYjsStore } from 'widgets/board-widget/model/useYjsStore';
-import { BOARD_HOST_URL } from 'shared/constants';
 import { Flex, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { useAppStore } from 'app/app-store';
-
-const HOST_URL = BOARD_HOST_URL;
 
 export const BoardWidget = () => {
     const CustomShapes = [BlockShapeUtil];
     const customTools = [CardShapeTool];
-    const store = useYjsStore({
-        roomId: 'example6',
-        hostUrl: HOST_URL,
-        shapeUtils: CustomShapes
-    });
+    // const store = useYjsStore({
+    //     roomId: 'example6',
+    //     hostUrl: HOST_URL,
+    //     shapeUtils: CustomShapes
+    // });
 
     return (
         <div className='tldraw__editor'>
             <Tldraw
-                store={store}
+                // store={store}
                 shareZone={<UserEditor />}
                 shapeUtils={CustomShapes}
                 tools={customTools}

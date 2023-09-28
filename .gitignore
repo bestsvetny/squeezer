@@ -29,10 +29,9 @@ yarn-debug.log
 yarn-error.log
 tsconfig.tsbuildinfo
 
-# env
+# env and secrets
 *.env
-*.env.local
-*.local.env
+db_password.txt
 
 # Cache
 .eslintcache

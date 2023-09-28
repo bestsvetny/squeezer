@@ -12,6 +12,9 @@
     "dev:chat-host": "yarn nx dev @ckb/chat-host",
     "build": "yarn nx run-many -t build",
     "build:core": "yarn nx build @ckb/core",
+    "build:api": "yarn nx build @ckb/api",
+    "prod:core": "yarn build:core && nx start @ckb/core",
+    "prod:api": "yarn build:api && nx start @ckb/api",
     "lint:eslint": "eslint . --ext .js,cjs,.ts,.tsx --cache",
     "lint:eslint:fix": "yarn lint:eslint --fix",
     "lint:prettier": "prettier --ignore-unknown --cache --check .",
@@ -59,7 +62,6 @@
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0",
     "zustand": "^4.4.1"
   }
 }
