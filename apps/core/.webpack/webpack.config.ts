@@ -79,7 +79,9 @@ const plugins = (isProd: boolean) => {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
         }),
-        new Dotenv()
+        new Dotenv({
+            path: isDev ? resolve(rootDir, '.development.env') : resolve(rootDir, '.production.env')
+        })
     ];
 
     if (isProd) {

@@ -3,10 +3,9 @@ import { MessageForm } from 'features/message-form';
 import { Box, Flex } from '@chakra-ui/react';
 import { ChatMessage } from 'entities/chat-message';
 import { denormalize } from 'shared';
-import { CHAT_HOST_URL } from 'shared/constants';
 import { useAppStore } from 'app/app-store';
-import { io } from 'socket.io-client';
 import { Message } from 'postcss';
+import { createChatSocket } from 'widgets/chat-widget/model/createChatSocket';
 export const ChatWidget = () => {
     const messages = useAppStore.use.messages();
     const isConnected = useAppStore.use.isConnected();
@@ -36,7 +35,7 @@ export const ChatWidget = () => {
             });
         }
 
-        const socket = io(CHAT_HOST_URL);
+        const socket = createChatSocket();
         setSocket(socket);
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);

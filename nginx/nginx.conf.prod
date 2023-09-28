@@ -1,0 +1,28 @@
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
+server {
+    listen 80;
+
+    server_name bestsvetny.com;
+
+    location / {
+        proxy_pass http://core:4001;
+    }
+
+    location /api {
+        proxy_pass http://api:5001;
+        rewrite ^/api/(.*) /$1 break;
+        proxy_http_version 1.1;
+    }
+
+    location /chat/api {
+        proxy_pass http://api:5000;
+        rewrite ^/api/(.*) /$1 break;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}
