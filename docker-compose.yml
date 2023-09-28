@@ -4,10 +4,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: yarn prod:api
+    command: yarn prod:api #env vars here
     restart: unless-stopped
     environment:
-      - POSTGRES_HOST=api_db
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - PORT=${PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
     depends_on:
       - api_db
 #    volumes:
@@ -23,10 +28,6 @@ services:
     command: yarn prod:core
     depends_on:
       - api
-#    environment:
-#      - API_URL=http://bestsvetny.com/api
-#      - BOARD_HOST_URL=http://bestsvetny.com/board/api
-#      - CHAT_HOST_URL=http://bestsvetny.com/chat/api
 #    volumes:
 #      - mono-node-modules:/app/node_modules
     networks:
@@ -48,26 +49,19 @@ services:
   api_db:
     container_name: ckb-api-db
     environment:
-      - POSTGRES_PASSWORD=/run/secrets/db_password
-      - POSTGRES_DB=squeezer
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     image: postgres:14.3-alpine
     restart: always
     volumes:
       - postgres_data_local:/var/lib/postgresql/data
     networks:
       - ckb-network
-    secrets:
-      - db_password
 
 volumes:
   postgres_data_local:
 #  mono-node-modules:
 #  ^ fix NX caches
-
-secrets:
-  db_password:
-    file: db_password.txt
 
 networks:
   ckb-network:
