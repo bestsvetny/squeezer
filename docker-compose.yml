@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
-      - PORT=${PORT}
+      - API_PORT=${PORT}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -26,6 +26,10 @@ services:
       dockerfile: Dockerfile
     container_name: ckb-core
     command: yarn prod:core
+    environment:
+      - API_URL=${API_URL}
+      - BOARD_HOST_URL=${BOARD_HOST_URL}
+      - CHAT_HOST_URL=${CHAT_HOST_URL}
     depends_on:
       - api
 #    volumes:

@@ -81,6 +81,12 @@ const plugins = (isProd: boolean) => {
         }),
         new Dotenv({
             path: isDev ? resolve(rootDir, '.development.env') : resolve(rootDir, '../../.env')
+        }),
+        new webpack.EnvironmentPlugin({
+            API_URL: process.env.API_URL,
+            BOARD_HOST_URL: process.env.BOARD_HOST_URL,
+            CHAT_HOST_URL: process.env.CHAT_HOST_URL,
+            NODE_ENV: process.env.NODE_ENV
         })
     ];
 
